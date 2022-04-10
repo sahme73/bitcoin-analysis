@@ -8,7 +8,7 @@ class Node {
         void TestFunction();
 
     private:
-        int source_id_;
-        std::vector< std::pair<int, int> > trades_; //target, rating
+        //int source_id_;
+        //std::vector< std::pair<int, int> > trades_; //target, rating
 
 };

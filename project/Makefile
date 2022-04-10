@@ -20,7 +20,7 @@ exec: bin/exec
 #tests: bin/tests
 
 bin/exec: ${FILES}
-	${CC} ${CFLAGS} $^ -o bin/exec
+	${CXX} ${CXX_FLAGS} $^ -o bin/exec
 
 #bin/tests: src/buildings/* src/districts/* src/factories/* tests/test.cc
 #	${CXX} ${CXX_FLAGS} $^ -o bin/tests
