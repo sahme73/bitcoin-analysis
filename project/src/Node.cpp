@@ -1,5 +1,5 @@
 #include "../include/Node.h"
 
-void Node::testFunction() {
-    std::cout << "In testFunction()!" << std::endl;
+void Node::TestFunction() {
+    std::cout << "In TestFunction()!" << std::endl;
 }
