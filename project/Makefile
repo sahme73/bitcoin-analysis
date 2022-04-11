@@ -13,6 +13,7 @@ CFLAGS = -Wall -g
 #Misc. Vars:
 
 FILES = src/main.cc src/Node.cpp src/Graph.cpp src/Edge.cpp
+TEST_FILES = src/* tests/test.cc
 
 ####################################################################################################
 
@@ -22,7 +23,7 @@ exec: bin/exec
 bin/exec: ${FILES}
 	${CXX} ${CXX_FLAGS} $^ -o bin/exec
 
-#bin/tests: src/buildings/* src/districts/* src/factories/* tests/test.cc
+#bin/tests: ${TEST_FILES}
 #	${CXX} ${CXX_FLAGS} $^ -o bin/tests
 
 .DEFAULT_GOAL := exec
