@@ -4,9 +4,20 @@
 
 Graph::Graph() {
     //Empty Graph
+    for (int i = 0; i < 10000; i++) {
+        std::vector<int> col(10000, 0);
+        adjacency_matrix_.push_back(col);
+    }
 }
 
 Graph::Graph(std::string file_name) {
+
+    //Create an empty adjacency matrix - edit later for size
+    for (int i = 0; i < 10000; i++) {
+        std::vector<int> col(10000, 0);
+        adjacency_matrix_.push_back(col);
+    }
+
     BuildGraph(file_name);
 }
 
@@ -22,10 +33,10 @@ void Graph::Clear() {
 
 void Graph::BuildGraph(std::string file_name) {
     std::string source_id, target_id, rating, time; //variables
-    std::vector<std::string> vec_source_id;
-    std::vector<std::string> vec_target_id;
-    std::vector<std::string> vec_rating;
-    std::vector<std::string> vec_time;
+    std::vector<int> vec_source_ids;
+    std::vector<int> vec_target_ids;
+    std::vector<int> vec_ratings;
+    std::vector<std::string> vec_times;
 
     //number of lines
     size_t i = 0;
@@ -34,22 +45,67 @@ void Graph::BuildGraph(std::string file_name) {
     if (data.is_open()) {
         while (!data.eof()) {
             std::getline(data, source_id, ',');
-            vec_source_id.push_back(source_id);
+            if (source_id == "") break; //reached last line of data
+            vec_source_ids.push_back(std::stoi(source_id));
             std::getline(data, target_id, ',');
-            vec_target_id.push_back(target_id);
+            vec_target_ids.push_back(std::stoi(target_id));
             std::getline(data, rating, ',');
-            vec_rating.push_back(rating);
+            vec_ratings.push_back(std::stoi(rating));
             std::getline(data, time, '\n');
-            vec_time.push_back(time);
+            vec_times.push_back(time);
 
             i++; //tracking number of lines for testing
         }
         data.close();
         std::cout << "Number of entries: " << i << std::endl;
     } else {
-        std::cout << "[ERROR] Unable to open file!" << std::endl;
+        std::cout << "[WARNING] No data read!" << std::endl;
+        std::cerr << "[ERROR] Unable to open file!" << std::endl;
     }
     
+    BuildGraphHelper(vec_source_ids, vec_target_ids, vec_ratings);
+}
+
+void Graph::BuildGraphHelper(std::vector<int> source_ids,
+            std::vector<int> target_ids, 
+            std::vector<int> ratings) {
+
+    for (size_t i = 0; i < source_ids.size(); i++) {
+        adjacency_matrix_.at(source_ids.at(i)).at(target_ids.at(i)) = ratings.at(i) + 11;
+    }
+}
+
+void Graph::BasicDFS(int input, std::vector<bool>& visited, int& counter, std::string& trades) {
+    trades += std::to_string(input) + " ";
+
+    visited.at(input) = true;
+    counter++;
+
+    for (size_t i = 0; i < adjacency_matrix_[input].size(); i++) {
+        if (adjacency_matrix_[input][i] != 0 && (!visited[i]))
+            BasicDFS(i, visited, counter, trades);
+    }
+}
+
+void Graph::TestPrint(int width, int height) {
+    int x = width;
+    int y = height;
+
+    if (x > 10000 || y > 10000 || x < 0 || y < 0) {
+        std::cerr << "[ERROR] Out of bounds!" << std::endl;
+        return;
+    }
+
+    for (y = 0; y < height; y++) {
+        for (x = 0; x < width; x++) {
+            if (adjacency_matrix_.at(y).at(x) >= 10) {
+                std::cout << adjacency_matrix_.at(y).at(x) << "  ";    
+            } else {
+                std::cout << adjacency_matrix_.at(y).at(x) << "   ";
+            }
+        }
+        std::cout << std::endl;
+    }
 }
 
 void Graph::TestFunction() {
