@@ -15,7 +15,7 @@ int main() {
     g1.TestPrint(20, 10);
 
     int counter = -1;
-    std::string trades = "";
+    std::string trade_network = "";
     int v = 24186; //total number of vertices
     std::vector<bool> visited(v, false); //visited vector for DFS
     int id;
@@ -28,18 +28,18 @@ int main() {
         std::cin >> id;
     }
 
-    std::cout << id << "'s Trades: " << std::endl;
-    g1.BasicDFS(id, visited, counter, trades);
+    std::cout << id << "'s Trading Network Subgraph: " << std::endl;
+    g1.BasicDFS(id, visited, counter, trade_network);
 
     int id_size = std::to_string(id).size();
-    trades.erase(0, id_size + 1);
+    trade_network.erase(0, id_size + 1);
 
-    std::cout << trades;
+    std::cout << trade_network;
 
     if (counter == 0)
         std::cout << std::endl << id << " has not traded with any other account!" << std::endl;
     else
-        std::cout << std::endl << id << " traded with " << counter << " accounts!" << std::endl;
+        std::cout << std::endl << id << "'s trading network subgraph contains " << counter << " accounts!" << std::endl;
 
     return -1;
 }
