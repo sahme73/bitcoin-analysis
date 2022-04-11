@@ -1,4 +1,4 @@
-#include "../inculde/Edge.h"
+#include "../include/Edge.h"
 
 Edge::Edge(int s, int t, int r, int ti) {
     source = s;
@@ -8,7 +8,7 @@ Edge::Edge(int s, int t, int r, int ti) {
 }
 
 int Edge::getSource() const {
-    return souce;
+    return source;
 }
 
 int Edge::getTarget() const {

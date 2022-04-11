@@ -3,7 +3,7 @@
 #Compiler Vars: (Contact mentor for optimal compiler tags!)
 
 CXX=clang++
-CXX_FLAGS=-std=c++17 -g -O0 -Wall -Wextra -Werror -Iincludes/buildings -Iincludes/factories -Iincludes/districts
+CXX_FLAGS=-std=c++17 -g -O0 -Wall -Wextra -Werror
 
 CC = g++
 CFLAGS = -Wall -g
@@ -12,7 +12,7 @@ CFLAGS = -Wall -g
 
 #Misc. Vars:
 
-FILES = src/main.cc src/Node.cpp src/Graph.cpp
+FILES = src/main.cc src/Node.cpp src/Graph.cpp src/Edge.cpp
 
 ####################################################################################################
 
