@@ -2,6 +2,8 @@
 Not Yet Competent (70%)
 
 Must resubmit!
+
+REGRADE: Sophisticated (100%) - 10% (Regrade Penalty)
 ### Comments
 
 **Leading Question**
