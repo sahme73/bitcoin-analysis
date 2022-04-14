@@ -29,7 +29,8 @@ int main() {
     }
 
     std::cout << id << "'s Trading Network Subgraph: " << std::endl;
-    g1.BasicDFS(id, visited, counter, trade_network);
+    std::vector<int> t_n;
+    g1.BasicDFS(id, visited, counter, t_n);
 
     std::cout << trade_network;
 

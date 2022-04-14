@@ -48,10 +48,10 @@ void Graph::BuildGraph(std::string file_name) {
             std::getline(data, source_id, ',');
             if (source_id == "") break; //reached last line of data
             vec_source_ids.push_back(std::stoi(source_id));
-            if(std::stoi(source_id) > max)
+            if(std::stoi(source_id) > (int)max)
                 max = std::stoi(source_id);
             std::getline(data, target_id, ',');
-            if(std::stoi(target_id) > max)
+            if(std::stoi(target_id) > (int)max)
                 max = std::stoi(target_id);
             vec_target_ids.push_back(std::stoi(target_id));
             std::getline(data, rating, ',');
@@ -68,14 +68,14 @@ void Graph::BuildGraph(std::string file_name) {
         std::cerr << "[ERROR] Unable to open file!" << std::endl;
     }
     
-    BuildGraphHelper(vec_source_ids, vec_target_ids, vec_ratings);
+    BuildGraphHelper(vec_source_ids, vec_target_ids, vec_ratings, max);
 }
 
 void Graph::BuildGraphHelper(std::vector<int> source_ids,
             std::vector<int> target_ids, 
             std::vector<int> ratings, size_t max) {
     
-    for (int i = 0; i < max; i++) {
+    for (int i = 0; i < (int)max; i++) {
         std::vector<int> col(max, 0);
         adjacency_matrix_.push_back(col);
         Node* temp = new Node();
@@ -90,7 +90,7 @@ void Graph::BuildGraphHelper(std::vector<int> source_ids,
     }
 }
 
-void Graph::BasicDFS(std::vector& trades) {
+void Graph::BasicDFS(std::vector<int>& trades) {
     std::vector<bool> visited;
     for(size_t i = 0; i < max; i++) {
         visited.push_back(false);
@@ -98,13 +98,14 @@ void Graph::BasicDFS(std::vector& trades) {
 
     for(size_t i = 0; i < max; i++) {
         if(!visited[i] && nodes_[i]->inTrades()) { //make sure it is actually in a network
-            BasicDFS(i, visited, 0, trades);
+            int a = 0;
+            BasicDFS(i, visited, a, trades);
         }
     }
 }
 
-void Graph::BasicDFS(int input, std::vector<bool>& visited, int& counter, std::string& trades) {
-    trades += std::to_string(input) + " ";
+void Graph::BasicDFS(int input, std::vector<bool>& visited, int& counter, std::vector<int>& trades) {
+    trades.push_back(input);
 
     visited.at(input) = true;
     counter++;

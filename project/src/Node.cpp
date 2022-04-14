@@ -12,6 +12,6 @@ void Node::inNetwork() {
     inUse = true;
 }
 
-void inTrades() {
+bool Node::inTrades() {
     return inUse;
 }
