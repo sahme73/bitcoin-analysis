@@ -13,10 +13,10 @@ Graph::Graph() {
 Graph::Graph(std::string file_name) {
 
     //Create an empty adjacency matrix - edit later for size
-    for (int i = 0; i < 10000; i++) {
-        std::vector<int> col(10000, 0);
-        adjacency_matrix_.push_back(col);
-    }
+    // for (int i = 0; i < 10000; i++) {
+    //     std::vector<int> col(10000, 0);
+    //     adjacency_matrix_.push_back(col);
+    // }
 
     BuildGraph(file_name);
 }
@@ -40,6 +40,7 @@ void Graph::BuildGraph(std::string file_name) {
 
     //number of lines
     size_t i = 0;
+    max = 0;
 
     std::ifstream data(file_name);
     if (data.is_open()) {
@@ -47,7 +48,11 @@ void Graph::BuildGraph(std::string file_name) {
             std::getline(data, source_id, ',');
             if (source_id == "") break; //reached last line of data
             vec_source_ids.push_back(std::stoi(source_id));
+            if(std::stoi(source_id) > max)
+                max = std::stoi(source_id);
             std::getline(data, target_id, ',');
+            if(std::stoi(target_id) > max)
+                max = std::stoi(target_id);
             vec_target_ids.push_back(std::stoi(target_id));
             std::getline(data, rating, ',');
             vec_ratings.push_back(std::stoi(rating));
@@ -68,10 +73,33 @@ void Graph::BuildGraph(std::string file_name) {
 
 void Graph::BuildGraphHelper(std::vector<int> source_ids,
             std::vector<int> target_ids, 
-            std::vector<int> ratings) {
+            std::vector<int> ratings, size_t max) {
+    
+    for (int i = 0; i < max; i++) {
+        std::vector<int> col(max, 0);
+        adjacency_matrix_.push_back(col);
+        Node* temp = new Node();
+        nodes_.push_back(temp);
+    }
 
     for (size_t i = 0; i < source_ids.size(); i++) {
         adjacency_matrix_.at(source_ids.at(i)).at(target_ids.at(i)) = ratings.at(i) + 11;
+        nodes_[source_ids.at(i)]->inNetwork();
+        nodes_[target_ids.at(i)]->inNetwork();
+
+    }
+}
+
+void Graph::BasicDFS(std::vector& trades) {
+    std::vector<bool> visited;
+    for(size_t i = 0; i < max; i++) {
+        visited.push_back(false);
+    }
+
+    for(size_t i = 0; i < max; i++) {
+        if(!visited[i] && nodes_[i]->inTrades()) { //make sure it is actually in a network
+            BasicDFS(i, visited, 0, trades);
+        }
     }
 }
 

@@ -27,4 +27,5 @@ class Graph {
     private:
         std::vector<Node*> nodes_;
         std::vector<std::vector<int>> adjacency_matrix_;
+        size_t max;
 };
