@@ -62,6 +62,7 @@ void Graph::BuildGraph(std::string file_name) {
             i++; //tracking number of lines for testing
         }
         data.close();
+        max = max + 1;
         std::cout << "Number of entries: " << i << std::endl;
     } else {
         std::cout << "[WARNING] No data read!" << std::endl;
