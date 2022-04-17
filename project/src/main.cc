@@ -41,6 +41,42 @@ int main() {
 
     // return -1;
     bool passed = true;
+    bool allPassed = true;
+
+    std::cout << "TEST CLEAN" << std::endl;
+    Graph gc("./data/test_cleaning.csv");
+    passed = gc.isClean();
+    if(passed) {
+        std::cout << "CLEAN TEST PASSED" << std::endl;
+    } else {
+        std::cout << "CLEAN TEST FAILED" << std::endl;
+    }
+    allPassed = passed && allPassed;
+    passed = true;
+
+    std::cout << "TEST ADJACENCY MATRIX" << std::endl;
+    
+    int r;
+    r = gc.getRating(0,1);
+    passed = passed && r == -4;
+    r = gc.getRating(0,5);
+    passed = passed && r == -10;
+    r = gc.getRating(1,4);
+    passed = passed && r == 3;
+    r = gc.getRating(1,2);
+    passed = passed && r == 0;
+    r = gc.getRating(2,3);
+    passed = passed && r == 4;
+
+    if(passed) {
+        std::cout << "MATRIX TEST PASSED" << std::endl;
+    } else {
+        std::cout << "MATRIX TEST FAILED" << std::endl;
+    }
+
+    allPassed = passed && allPassed;
+    passed = true;
+
 
     std::cout << "BASIC TEST" << std::endl;
     Graph g1("./data/test_basic.csv");
@@ -63,6 +99,7 @@ int main() {
         std::cout << "Basic Test FAILED." << std::endl;
     }
 
+    allPassed = passed && allPassed;
     passed = true;
 
     std::cout << "CYCLE TEST" << std::endl;
@@ -85,6 +122,9 @@ int main() {
         std::cout << "Cycle Test FAILED." << std::endl;
     }
 
+    allPassed = passed && allPassed;
+    passed = true;
+
     std::cout << "DISJOINT TEST" << std::endl;
     Graph g3("./data/test_disjoint.csv");
     std::vector<int> t3;
@@ -106,6 +146,9 @@ int main() {
         std::cout << "Disjoint Test FAILED." << std::endl;
     }
 
+    allPassed = passed && allPassed;
+    passed = true;
+
     std::cout << "WORTHLESS TEST" << std::endl;
     Graph g4("./data/test_worthless.csv");
     std::vector<int> t4;
@@ -125,6 +168,13 @@ int main() {
         std::cout << "Worthless Test PASSED." << std::endl;
     } else {
         std::cout << "Worthless Test FAILED." << std::endl;
+    }
+
+    allPassed = passed && allPassed;
+    passed = true;
+
+    if(allPassed) {
+        std::cout << "All tests passed. Congratulations!" << std::endl;
     }
 
 }   

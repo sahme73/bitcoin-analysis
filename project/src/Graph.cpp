@@ -141,3 +141,17 @@ void Graph::TestPrint(int width, int height) {
 void Graph::TestFunction() {
     std::cout << "In TestFunction()!" << std::endl;
 }
+
+bool Graph::isClean() {
+    for (size_t y = 0; y < adjacency_matrix_.size(); y++) {
+        for (size_t x = 0; x < adjacency_matrix_.at(y).size(); x++) {
+            if (adjacency_matrix_.at(y).at(x) < 0) 
+                return false;
+        }
+    }
+    return true;
+}
+
+int Graph::getRating(int source, int target) {
+    return adjacency_matrix_.at(source).at(target) - 11;
+}

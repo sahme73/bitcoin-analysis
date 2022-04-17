@@ -13,6 +13,8 @@ class Graph {
         void TestPrint(int width, int height);
         void BasicDFS(std::vector<int>& trades);
         void BasicDFS(int input, std::vector<bool>& visited, int& count, std::vector<int>& trades);
+        bool isClean();
+        int getRating(int source, int target);
 
         void TestFunction();
 
