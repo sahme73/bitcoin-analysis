@@ -177,4 +177,5 @@ int main() {
         std::cout << "All tests passed. Congratulations!" << std::endl;
     }
 
+    return 0;
 }   

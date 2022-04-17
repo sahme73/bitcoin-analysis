@@ -19,3 +19,10 @@ ___
 - Tasks Completed: This week, we contacted our mentor to make sure our plans were ok with him. We rewrote and resubmitted the project proposal. We completed some basic code to prepare our graph in memory.
 - Problems: There were no notable problems this week. In last week's plans, we forgot to account for the delay between submitting to our mentor and his response. Therefore, things took longer than we thought.
 - Plans: This week, we will finish setting up the graph in memory and write the DFS traversal. We will also write some simple test cases.
+___
+**Week 3**
+---
+- Goals: Our goal this week was to load the graph into memory and write the DFS traversal. We exceeded this goal and were able to complete some tests cases for both the data reading and the traversal. We were even able to begin work on Dijkstra's algorithm.
+- Tasks Completed: This week, we wrote the code to facilitate data cleaning and reading into memory and the code to make our traversal work. We also created some test graphs and wrote test cases to see how well the code works.
+- Problems: We had two main problems this week. The first was with testing. We are having trouble setting the catch2 test software like is used in the MPs. However, we wrote our tests just as a normal executable instead. The second was when considering Dijkstra's algorithm. We cannot think how to update the distance values for things already in the priority queue.
+- Plans: We plan to finish Dijksta's algorithm and the PageRank this week and hopefully a few test cases. This will allow us plenty of time to prepare the presentation and paper.
