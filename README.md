@@ -50,7 +50,7 @@ _Running the main executable:_
 
 <br></br>
 
-_Running the test executable:_
+_Running the test executables:_
 1. Make the tests executable
    ```sh
    make tests
