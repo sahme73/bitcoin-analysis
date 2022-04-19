@@ -156,56 +156,56 @@ int Graph::getRating(int source, int target) {
     return adjacency_matrix_.at(source).at(target) - 11;
 }
 
-std::vector<int> Graph::shortestPath(int start, int end) {
-    vector<int> sp;
-    if(!nodes_[start] -> inNetwork() || !nodes_[end] -> inNetwork()) {
-        sp.push(-1);
-        return sp;
-    }
+// std::vector<int> Graph::shortestPath(int start, int end) {
+//     vector<int> sp;
+//     if(!nodes_[start] -> inNetwork() || !nodes_[end] -> inNetwork()) {
+//         sp.push(-1);
+//         return sp;
+//     }
 
-    std::vector<int> d;
-    std::vector<int> p;
-    std::vector<bool> v;
+//     std::vector<int> d;
+//     std::vector<int> p;
+//     std::vector<bool> v;
 
-    for(size_t i = 0; i < max; i++) {
-        d.push_back(INT_MAX);
-        p.push_back(-1);
-        v.push_back(false);
-    }
-    d[start] = 0;
+//     for(size_t i = 0; i < max; i++) {
+//         d.push_back(INT_MAX);
+//         p.push_back(-1);
+//         v.push_back(false);
+//     }
+//     d[start] = 0;
 
-    std::priority_queue<std::pair<int, int>> pq;
-    for(size_t i = 0; i < max; i++) {
-        pq.push(std::pair<int,int>(d[i], i));
-    }
+//     std::priority_queue<std::pair<int, int>> pq;
+//     for(size_t i = 0; i < max; i++) {
+//         pq.push(std::pair<int,int>(d[i], i));
+//     }
 
-    while(node(pq.top()) != end) {
-        std::pair<int,int> p = pq.top();
-        v[node(p)] = true;
-        std::vector<int> neighbors = incVert(node(p));
-        for(size_t i = 0; i < neighbors.size(); i++) {
-            if(!v[neighbors[i]]) {
+//     while(node(pq.top()) != end) {
+//         std::pair<int,int> p = pq.top();
+//         v[node(p)] = true;
+//         std::vector<int> neighbors = incVert(node(p));
+//         for(size_t i = 0; i < neighbors.size(); i++) {
+//             if(!v[neighbors[i]]) {
                 
-            }
-        }
-    }
+//             }
+//         }
+//     }
 
-}
+// }
 
 int Graph::node(std::pair<int,int> p) {
     return p.second;
 }
 
-int Graph::dist(std::pair<int,int> d) {
+int Graph::dist(std::pair<int,int> p) {
     return p.first;
 }
 
-std::vector<int> Graph::incVert(int v) {
-    std::vector<int> ans;
-    for(size_t i = 0; i < max; i++) {
-        if(adjacency_matrix_.at(v).at(i) != 0) {
-            ans.push_back(i);
-        }
-    }
-    return ans;
-}
+// std::vector<int> Graph::incVert(int v) {
+//     std::vector<int> ans;
+//     for(size_t i = 0; i < max; i++) {
+//         if(adjacency_matrix_.at(v).at(i) != 0) {
+//             ans.push_back(i);
+//         }
+//     }
+//     return ans;
+// }

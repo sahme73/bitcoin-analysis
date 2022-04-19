@@ -16,7 +16,7 @@ class Graph {
         bool isClean();
         int getRating(int source, int target);
 
-        std::vector<int> shortestPath(int start, int end);
+        //std::vector<int> shortestPath(int start, int end);
 
         void TestFunction();
 
@@ -34,5 +34,5 @@ class Graph {
         std::vector<std::vector<int>> adjacency_matrix_;
         size_t max;
         int node(std::pair<int, int> p);
-        int dist(std:pair<int, int> p);
+        int dist(std::pair<int, int> p);
 };
