@@ -16,7 +16,8 @@ class Graph {
         bool isClean();
         int getRating(int source, int target);
 
-        //std::vector<int> shortestPath(int start, int end);
+        std::vector<int> shortestPath(int start, int end);
+        std::vector<int> incVert(int v);
 
         void TestFunction();
 

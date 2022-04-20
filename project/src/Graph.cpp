@@ -156,41 +156,60 @@ int Graph::getRating(int source, int target) {
     return adjacency_matrix_.at(source).at(target) - 11;
 }
 
-// std::vector<int> Graph::shortestPath(int start, int end) {
-//     vector<int> sp;
-//     if(!nodes_[start] -> inNetwork() || !nodes_[end] -> inNetwork()) {
-//         sp.push(-1);
-//         return sp;
-//     }
+std::vector<int> Graph::shortestPath(int start, int end) {
+    vector<int> sp;
+    if(!nodes_[start] -> inNetwork() || !nodes_[end] -> inNetwork()) {
+        return sp;
+    }
 
-//     std::vector<int> d;
-//     std::vector<int> p;
-//     std::vector<bool> v;
+    std::vector<int> d;
+    std::vector<int> p;
+    std::vector<bool> v;
 
-//     for(size_t i = 0; i < max; i++) {
-//         d.push_back(INT_MAX);
-//         p.push_back(-1);
-//         v.push_back(false);
-//     }
-//     d[start] = 0;
+    for(size_t i = 0; i < max; i++) {
+        d.push_back(INT_MAX);
+        p.push_back(-1);
+        v.push_back(false);
+    }
+    d[start] = 0;
 
-//     std::priority_queue<std::pair<int, int>> pq;
-//     for(size_t i = 0; i < max; i++) {
-//         pq.push(std::pair<int,int>(d[i], i));
-//     }
+    std::priority_queue<std::pair<int, int>> pq;
+    pq.push(std::pair<int,int>(0,start));
 
-//     while(node(pq.top()) != end) {
-//         std::pair<int,int> p = pq.top();
-//         v[node(p)] = true;
-//         std::vector<int> neighbors = incVert(node(p));
-//         for(size_t i = 0; i < neighbors.size(); i++) {
-//             if(!v[neighbors[i]]) {
-                
-//             }
-//         }
-//     }
+    while(!pq.empty()) {
+        std::pair<int,int> p = pq.top();
+        v[node(p)] = true;
+        std::vector<int> neighbors = incVert(node(p));
+        for(size_t i = 0; i < neighbors.size(); i++) {
+            if(d[neighbors[i]] > dist(p) + adjacency_matrix_.at(node(p)).at(neighbors[i])) {
+                d[neighbors[i]] = dist(p) + adjacency_matrix_.at(node(p)).at(neighbors[i]);
+                p[neighbors[i]] = node(p);
+            }
+            if(!v[neighbors[i]]) {
+                pq.push(std::pair<int, int>(dist(p) + adjacency_matrix_.at(node(p)).at(neighbors[i]), neighbors[i]);
+            }
+        }
+    }
 
-// }
+    if(d[end] == INT_MAX) {
+        return sp;
+    }
+
+    std::vector<int> backward;
+    int loc = end;
+    while(loc != start) {
+        backward.push_back(loc);
+        loc = p[loc];
+    }
+
+    sp.push_back(start);
+    for(int i = (int)backward.size(); i >= 0; i--) {
+        sp.push_back(backward[i]);
+    }
+
+    return sp;
+
+}
 
 int Graph::node(std::pair<int,int> p) {
     return p.second;
@@ -200,12 +219,12 @@ int Graph::dist(std::pair<int,int> p) {
     return p.first;
 }
 
-// std::vector<int> Graph::incVert(int v) {
-//     std::vector<int> ans;
-//     for(size_t i = 0; i < max; i++) {
-//         if(adjacency_matrix_.at(v).at(i) != 0) {
-//             ans.push_back(i);
-//         }
-//     }
-//     return ans;
-// }
+std::vector<int> Graph::incVert(int v) {
+    std::vector<int> ans;
+    for(size_t i = 0; i < max; i++) {
+        if(adjacency_matrix_.at(v).at(i) != 0) {
+            ans.push_back(i);
+        }
+    }
+    return ans;
+}
