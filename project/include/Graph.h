@@ -21,6 +21,9 @@ class Graph {
 
         void TestFunction();
 
+        float getRanking(int v);
+        std::vector<float> getAllRanking();
+
     //Functions:
     private:
         void BuildGraph(std::string file_name);

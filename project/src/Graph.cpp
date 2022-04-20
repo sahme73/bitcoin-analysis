@@ -228,3 +228,29 @@ std::vector<int> Graph::incVert(int v) {
     }
     return ans;
 }
+
+float Graph::getRanking(int v) {
+    float num = 0;
+    float denom = 0;
+
+    for(int i = 0; i < adjacency_matrix_.size(); i++) {
+        int rate = adjacency_matrix_.at(i).at(v);
+        if(rate != 0) {
+            num += (float)rate;
+            denom ++;
+        }
+    }
+    return num / denom;
+}
+
+std::vector<float> Graph::getAllRanking() {
+    vector<float> vf;
+    for(int i = 0; i < max; i++) {
+        if(nodes_[i].inNetwork()) {
+            vf.push_back(getRanking(i))
+        } else{
+            vf.push_back(-1);
+        }
+    }
+    return vf;
+}
