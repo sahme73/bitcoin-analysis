@@ -13,7 +13,7 @@ TEST_CASE("Test Cleaning", "[weight=1][part=1]") {
 }
 
 TEST_CASE("Test Adjacency Matrix", "[weight=1][part=1]") {
-    
+    Graph gc("./data/test_cleaning.csv");
     int r;
     r = gc.getRating(0,1);
     REQUIRE(r == -4);
