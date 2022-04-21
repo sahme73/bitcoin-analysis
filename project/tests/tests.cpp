@@ -1,7 +1,8 @@
 #include "../include/Node.h"
 #include "../include/Graph.h"
-#include "../catch/catch.hpp"
 #include "../catch/catchmain.cpp"
+#include "../catch/catch.hpp"
+
 
 //int main() {
     bool passed = true;

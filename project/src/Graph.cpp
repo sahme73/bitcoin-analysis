@@ -1,6 +1,11 @@
 #include "../include/Graph.h"
 #include <fstream>
 #include <sstream>
+#include <functional>
+#include <queue>
+#include <vector>
+#include <iostream>
+#include <bits/stdc++.h>
 
 Graph::Graph() {
     //Empty Graph
@@ -157,8 +162,8 @@ int Graph::getRating(int source, int target) {
 }
 
 std::vector<int> Graph::shortestPath(int start, int end) {
-    vector<int> sp;
-    if(!nodes_[start] -> inNetwork() || !nodes_[end] -> inNetwork()) {
+    std::vector<int> sp;
+    if(!(nodes_[start] -> inTrades()) || !(nodes_[end] -> inTrades())) {
         return sp;
     }
 
@@ -167,7 +172,7 @@ std::vector<int> Graph::shortestPath(int start, int end) {
     std::vector<bool> v;
 
     for(size_t i = 0; i < max; i++) {
-        d.push_back(INT_MAX);
+        d.push_back(__INT_MAX__);
         p.push_back(-1);
         v.push_back(false);
     }
@@ -177,21 +182,21 @@ std::vector<int> Graph::shortestPath(int start, int end) {
     pq.push(std::pair<int,int>(0,start));
 
     while(!pq.empty()) {
-        std::pair<int,int> p = pq.top();
-        v[node(p)] = true;
-        std::vector<int> neighbors = incVert(node(p));
+        std::pair<int,int> pa = pq.top();
+        v[node(pa)] = true;
+        std::vector<int> neighbors = incVert(node(pa));
         for(size_t i = 0; i < neighbors.size(); i++) {
-            if(d[neighbors[i]] > dist(p) + adjacency_matrix_.at(node(p)).at(neighbors[i])) {
-                d[neighbors[i]] = dist(p) + adjacency_matrix_.at(node(p)).at(neighbors[i]);
-                p[neighbors[i]] = node(p);
+            if(d[neighbors[i]] > dist(pa) + adjacency_matrix_.at(node(pa)).at(neighbors[i])) {
+                d[neighbors[i]] = dist(pa) + adjacency_matrix_.at(node(pa)).at(neighbors[i]);
+                p[neighbors[i]] = node(pa);
             }
             if(!v[neighbors[i]]) {
-                pq.push(std::pair<int, int>(dist(p) + adjacency_matrix_.at(node(p)).at(neighbors[i]), neighbors[i]);
+                pq.push(std::pair<int, int>(dist(pa) + adjacency_matrix_.at(node(pa)).at(neighbors[i]), neighbors[i]));
             }
         }
     }
 
-    if(d[end] == INT_MAX) {
+    if(d[end] == __INT_MAX__) {
         return sp;
     }
 
@@ -233,7 +238,7 @@ float Graph::getRanking(int v) {
     float num = 0;
     float denom = 0;
 
-    for(int i = 0; i < adjacency_matrix_.size(); i++) {
+    for(size_t i = 0; i < adjacency_matrix_.size(); i++) {
         int rate = adjacency_matrix_.at(i).at(v);
         if(rate != 0) {
             num += (float)rate;
@@ -244,10 +249,10 @@ float Graph::getRanking(int v) {
 }
 
 std::vector<float> Graph::getAllRanking() {
-    vector<float> vf;
-    for(int i = 0; i < max; i++) {
-        if(nodes_[i].inNetwork()) {
-            vf.push_back(getRanking(i))
+    std::vector<float> vf;
+    for(size_t i = 0; i < max; i++) {
+        if(nodes_[i]->inTrades()) {
+            vf.push_back(getRanking(i));
         } else{
             vf.push_back(-1);
         }
