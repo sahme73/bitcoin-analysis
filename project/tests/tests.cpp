@@ -95,8 +95,126 @@ TEST_CASE("Test DFS Worthless", "[weight=1][part=2]") {
         std::cout << "Found: "<< t4[i] << " expected: "<< t4s[i] << std::endl;
         REQUIRE(t4[i] == t4s[i]);
     }
+
 }
 
+TEST_CASE("Test Dijsktra Basic", "[weight=1][part=3]") {
+    Graph g5("./data/dijk_basic.csv");
 
-    //return 0;
-//}
+    std::vector<int> t5_a;
+    std::vector<int> t5_as = {0, 1, 2, 7};
+
+    t5_a = g5.shortestPath(0, 7);
+    
+    for (size_t i = 0; i < t5_a.size(); i++) {
+        REQUIRE(t5_a[i] == t5_as[i]);
+    }
+
+    std::vector<int> t5_b;
+    std::vector<int> t5_bs = {0, 5, 4};
+
+    t5_b = g5.shortestPath(0, 4);
+    
+    for (size_t i = 0; i < t5_b.size(); i++) {
+        REQUIRE(t5_b[i] == t5_bs[i]);
+    }
+
+    std::vector<int> t5_c;
+    std::vector<int> t5_cs = {7, 4, 2};
+
+    t5_c = g5.shortestPath(7, 2);
+    
+    for (size_t i = 0; i < t5_c.size(); i++) {
+        REQUIRE(t5_c[i] == t5_cs[i]);
+    }
+
+    std::vector<int> t5_d;
+    std::vector<int> t5_ds = {5, 4};
+
+    t5_d = g5.shortestPath(5, 4);
+    
+    for (size_t i = 0; i < t5_d.size(); i++) {
+        REQUIRE(t5_d[i] == t5_ds[i]);
+    }
+
+}
+
+TEST_CASE("Test Dijsktra Cycles", "[weight=1][part=3]") {
+    Graph g6("./data/dijk_cycle_1.csv");
+    Graph g7("./data/dijk_cycle_2.csv");
+
+    std::vector<int> t6_a;
+    std::vector<int> t6_as = {0, 2, 3, 4, 5, 6, 7, 1};
+
+    t6_a = g6.shortestPath(0, 1);
+
+    for (size_t i = 0; i < t6_a.size(); i++) {
+        REQUIRE(t6_a[i] == t6_as[i]);
+    }
+
+    std::vector<int> t6_b;
+    std::vector<int> t6_bs = {0, 1};
+
+    t6_b = g7.shortestPath(0, 1);
+
+    for (size_t i = 0; i < t6_b.size(); i++) {
+        REQUIRE(t6_b[i] == t6_bs[i]);
+    }
+}
+
+TEST_CASE("Test Dijsktra Disjoint", "[weight=1][part=3]") {
+    Graph g8("./data/test_disjoint.csv");
+
+    std::vector<int> t7_a;
+
+    t7_a = g8.shortestPath(0, 3);
+
+    REQUIRE(t7_a.size() == 0);
+
+    std::vector<int> t7_b;
+    std::vector<int> t7_bs = {5, 4};
+
+    t7_b = g8.shortestPath(5, 4);
+
+    for (size_t i = 0; i < t7_b.size(); i++) {
+        REQUIRE(t7_b[i] == t7_bs[i]);
+    }
+
+    std::vector<int> t7_c;
+    std::vector<int> t7_cs = {};
+
+    t7_c = g8.shortestPath(4, 5);
+
+    REQUIRE(t7_c.size() == 0);
+
+}
+
+TEST_CASE("Test Dijsktra Worthless", "[weight=1][part=3]") {
+    Graph g9("./data/test_worthless.csv");
+
+    std::vector<int> t8;
+
+    t8 = g9.shortestPath(1, 6);
+    REQUIRE(t8.size() == 0);
+
+    t8 = g9.shortestPath(6, 1);
+    REQUIRE(t8.size() == 0);
+
+    t8 = g9.shortestPath(-5, 1);
+    REQUIRE(t8.size() == 0);
+
+    t8 = g9.shortestPath(1, -5);
+    REQUIRE(t8.size() == 0);
+
+    t8 = g9.shortestPath(-5, -5);
+    REQUIRE(t8.size() == 0);
+
+    t8 = g9.shortestPath(20, 1);
+    REQUIRE(t8.size() == 0);
+
+    t8 = g9.shortestPath(1, 20);
+    REQUIRE(t8.size() == 0);
+
+    t8 = g9.shortestPath(20, 20);
+    REQUIRE(t8.size() == 0);
+}

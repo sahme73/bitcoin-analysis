@@ -162,6 +162,12 @@ int Graph::getRating(int source, int target) {
 }
 
 std::vector<int> Graph::shortestPath(int start, int end) {
+
+    int max_as_int = (int)max;
+    if (start < 0 || start > max_as_int || end < 0 || end > max_as_int) {
+        return std::vector<int>();
+    }
+
     std::vector<int> sp;
     if(!(nodes_[start] -> inTrades()) || !(nodes_[end] -> inTrades())) {
         return sp;
@@ -177,12 +183,14 @@ std::vector<int> Graph::shortestPath(int start, int end) {
         v.push_back(false);
     }
     d[start] = 0;
+    p[start] = start;
 
-    std::priority_queue<std::pair<int, int>> pq;
+    std::priority_queue<std::pair<int, int>, std::vector<std::pair<int, int>> , std::greater<std::pair<int, int>>> pq;
     pq.push(std::pair<int,int>(0,start));
 
     while(!pq.empty()) {
         std::pair<int,int> pa = pq.top();
+        pq.pop();
         v[node(pa)] = true;
         std::vector<int> neighbors = incVert(node(pa));
         for(size_t i = 0; i < neighbors.size(); i++) {
@@ -207,10 +215,13 @@ std::vector<int> Graph::shortestPath(int start, int end) {
         loc = p[loc];
     }
 
-    sp.push_back(start);
+    //sp.push_back(start);
     for(int i = (int)backward.size(); i >= 0; i--) {
         sp.push_back(backward[i]);
     }
+
+    if (sp.size() > 0) 
+        sp[0] = start;
 
     return sp;
 
