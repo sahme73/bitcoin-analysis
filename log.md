@@ -26,3 +26,10 @@ ___
 - Tasks Completed: This week, we wrote the code to facilitate data cleaning and reading into memory and the code to make our traversal work. We also created some test graphs and wrote test cases to see how well the code works.
 - Problems: We had two main problems this week. The first was with testing. We are having trouble setting the catch2 test software like is used in the MPs. However, we wrote our tests just as a normal executable instead. The second was when considering Dijkstra's algorithm. We cannot think how to update the distance values for things already in the priority queue.
 - Plans: We plan to finish Dijksta's algorithm and the PageRank this week and hopefully a few test cases. This will allow us plenty of time to prepare the presentation and paper.
+___
+**Week 3**
+---
+- Goals: Our goal this week was to finish Dijkstra's Algorithm and PageRank and complete a few test cases, if possible. We surpassed this goal, finishing numerous rigorous test cases for both algorithms and making us confident in their utility.
+- Tasks Completed: This week, the group finished coding around Thursday. the group was able to meet on Sunday to write test cases for each method.
+- Problems: We did not encounter any significant problems this week. All of the issues that came up wile testing the algorithms were solved in a group meeting.
+- Plans: We plan to finish testing on the full dataset this week and working on the presentation materials in order to be finished before finals week. This will also allow us time to correct any problems that appear.

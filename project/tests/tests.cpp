@@ -244,7 +244,7 @@ TEST_CASE("Test PageRank Disjoint", "[weight=1][part=4]") {
 
 TEST_CASE("Test PageRank 0 Values", "[weight=1][part=4]") 
 {
-    std::cout << "TEST PAGERANK" << std::endl;
+    //std::cout << "TEST PAGERANK" << std::endl;
     Graph gc("./data/test_pageRank_Lu.csv");
     float r0;
     float r1;
