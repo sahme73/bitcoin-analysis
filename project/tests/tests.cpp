@@ -5,10 +5,8 @@
 
 
 //int main() {
-    bool passed = true;
-    bool allPassed = true;
 TEST_CASE("Test Cleaning", "[weight=1][part=1]") {
-    std::cout << "TEST CLEAN" << std::endl;
+    //std::cout << "TEST CLEAN" << std::endl;
     Graph gc("./data/test_cleaning.csv");
     REQUIRE(gc.isClean());
 }
@@ -42,7 +40,7 @@ TEST_CASE("Test DFS Basic", "[weight=1][part=2]") {
     t1s.push_back(6);
     g1.BasicDFS(t1);
     for(size_t i = 0; i < t1.size(); i++) {
-        std::cout << "Found: "<< t1[i] << " expected: "<< t1s[i] << std::endl;
+        //std::cout << "Found: "<< t1[i] << " expected: "<< t1s[i] << std::endl;
         REQUIRE(t1[i] == t1s[i]);
     }
 }
@@ -58,7 +56,7 @@ TEST_CASE("Test DFS Cycle", "[weight=1][part=2]") {
     t2s.push_back(4);
     g2.BasicDFS(t2);
     for(size_t i = 0; i < t2.size(); i++) {
-        std::cout << "Found: "<< t2[i] << " expected: "<< t2s[i] << std::endl;
+        //std::cout << "Found: "<< t2[i] << " expected: "<< t2s[i] << std::endl;
         REQUIRE(t2[i] == t2s[i]);
     }
 }
@@ -75,7 +73,7 @@ TEST_CASE("Test DFS Disjoint", "[weight=1][part=2]") {
     t3s.push_back(5);
     g3.BasicDFS(t3);
     for(size_t i = 0; i < t3.size(); i++) {
-        std::cout << "Found: "<< t3[i] << " expected: "<< t3s[i] << std::endl;
+       // std::cout << "Found: "<< t3[i] << " expected: "<< t3s[i] << std::endl;
         REQUIRE(t3[i] == t3s[i]);
     }
 }
@@ -92,7 +90,7 @@ TEST_CASE("Test DFS Worthless", "[weight=1][part=2]") {
     t4s.push_back(7);
     g4.BasicDFS(t4);
     for(size_t i = 0; i < t4.size(); i++) {
-        std::cout << "Found: "<< t4[i] << " expected: "<< t4s[i] << std::endl;
+        //std::cout << "Found: "<< t4[i] << " expected: "<< t4s[i] << std::endl;
         REQUIRE(t4[i] == t4s[i]);
     }
 
@@ -218,3 +216,77 @@ TEST_CASE("Test Dijsktra Worthless", "[weight=1][part=3]") {
     t8 = g9.shortestPath(20, 20);
     REQUIRE(t8.size() == 0);
 }
+
+TEST_CASE("Test PageRank", "[weight=1][part=4]") 
+{
+    Graph gc("./data/test_pageRank.csv");
+    float r0;
+    float r1;
+    float r2;
+    float r3;
+    r0=gc.getRanking(0);
+    r1=gc.getRanking(1);
+    r2=gc.getRanking(2);
+    r3=gc.getRanking(3);
+    REQUIRE(r0 == 2.0f);
+    REQUIRE(r1 == 4.5f);
+    REQUIRE(r2 == 6.0f);
+    REQUIRE(r3 == 2.5f);
+}
+
+TEST_CASE("Test PageRank Disjoint", "[weight=1][part=4]") {
+    Graph gc("./data/test_pagerank_sa.csv");
+    REQUIRE(gc.getRanking(0) == 1.0f);
+    REQUIRE(gc.getRanking(5) == 11.0f);
+    REQUIRE(gc.getRanking(3) == 18.5f);
+    
+}
+
+TEST_CASE("Test PageRank 0 Values", "[weight=1][part=4]") 
+{
+    std::cout << "TEST PAGERANK" << std::endl;
+    Graph gc("./data/test_pageRank_Lu.csv");
+    float r0;
+    float r1;
+    float r2;
+    float r3;
+    float r4;
+    float r5;
+    float r6;
+    float r7;
+    r0=gc.getRanking(0);
+    r1=gc.getRanking(1);
+    r2=gc.getRanking(2);
+    r3=gc.getRanking(3);
+    r4=gc.getRanking(4);
+    r5=gc.getRanking(5);
+    r6=gc.getRanking(6);
+    r7=gc.getRanking(7);
+    REQUIRE(r0 == 0);
+    REQUIRE(r1 == 4.25);
+    REQUIRE(r2 == 6);
+    REQUIRE(r3 == 6);
+    REQUIRE(r4 == 3.5f);
+    REQUIRE(r5 == 3.5);
+    REQUIRE(r6 == 7);
+    REQUIRE(r7 == 0);
+    
+    
+}
+
+TEST_CASE("Test PageRank All", "[weight=1][part=4]") {
+    Graph gc("./data/test_PageRank_mtc.csv");
+    std::vector<float> out = gc.getAllRanking();
+    std::vector<float> sol = {5.5f, 5.0f, (49.0f/3.0f), 8.0f, 8.75f, 10.5f, 0.0f};
+    REQUIRE(out.size() == sol.size());
+    for(size_t i = 0; i < sol.size(); i++) {
+        REQUIRE(out[i] == sol[i]);
+    }
+}
+
+TEST_CASE("Test PageRank Worthless", "[weight=1][part=4]") {
+    Graph gc("./data/test_PageRank_mtc.csv");
+    REQUIRE(gc.getRanking(-5) == -1.0f);
+    REQUIRE(gc.getRanking(100) == -1.0f);
+}
+

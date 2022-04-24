@@ -68,7 +68,7 @@ void Graph::BuildGraph(std::string file_name) {
         }
         data.close();
         max = max + 1;
-        std::cout << "Number of entries: " << i << std::endl;
+        //std::cout << "Number of entries: " << i << std::endl;
     } else {
         std::cout << "[WARNING] No data read!" << std::endl;
         std::cerr << "[ERROR] Unable to open file!" << std::endl;
@@ -249,12 +249,19 @@ float Graph::getRanking(int v) {
     float num = 0;
     float denom = 0;
 
+    if(v < 0 || v >= (int)max) {
+        return -1.0f;
+    }
+
     for(size_t i = 0; i < adjacency_matrix_.size(); i++) {
         int rate = adjacency_matrix_.at(i).at(v);
         if(rate != 0) {
             num += (float)rate;
             denom ++;
         }
+    }
+    if(denom == 0.0f) {
+        return 0.0f;
     }
     return num / denom;
 }
