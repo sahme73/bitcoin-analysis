@@ -168,6 +168,12 @@ std::vector<int> Graph::shortestPath(int start, int end) {
         return std::vector<int>();
     }
 
+    if(start == end) {
+        std::vector<int> one;
+        one.push_back(start);
+        return one;
+    }
+
     std::vector<int> sp;
     if(!(nodes_[start] -> inTrades()) || !(nodes_[end] -> inTrades())) {
         return sp;

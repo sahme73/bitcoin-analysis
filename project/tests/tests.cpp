@@ -158,6 +158,13 @@ TEST_CASE("Test Dijsktra Cycles", "[weight=1][part=3]") {
     for (size_t i = 0; i < t6_b.size(); i++) {
         REQUIRE(t6_b[i] == t6_bs[i]);
     }
+
+    std::vector<int> t6_c;
+    std::vector<int> t6_cs = {0};
+
+    t6_c = g7.shortestPath(0,0);
+    REQUIRE(t6_c.size() == 1);
+    REQUIRE(t6_c[0] == 0);
 }
 
 TEST_CASE("Test Dijsktra Disjoint", "[weight=1][part=3]") {
