@@ -221,13 +221,10 @@ std::vector<int> Graph::shortestPath(int start, int end) {
         loc = p[loc];
     }
 
-    //sp.push_back(start);
-    for(int i = (int)backward.size(); i >= 0; i--) {
+    sp.push_back(start);
+    for(int i = (int)backward.size() - 1; i >= 0; i--) {
         sp.push_back(backward[i]);
     }
-
-    if (sp.size() > 0) 
-        sp[0] = start;
 
     return sp;
 
