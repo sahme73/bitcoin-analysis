@@ -111,6 +111,8 @@ void Graph::BasicDFS(std::vector<int>& trades) {
 }
 
 void Graph::BasicDFS(int input, std::vector<bool>& visited, int& counter, std::vector<int>& trades) {
+    if(input >= (int)max || input < 0 || !(nodes_[input] -> inTrades()))
+        return;
     trades.push_back(input);
 
     visited.at(input) = true;

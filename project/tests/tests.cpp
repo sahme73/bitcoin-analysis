@@ -96,6 +96,33 @@ TEST_CASE("Test DFS Worthless", "[weight=1][part=2]") {
 
 }
 
+TEST_CASE("Test 1 DFS Edge Cases", "[weight=1][part=2]") {
+    Graph g5a("./data/test_worthless.csv");
+
+
+    std::vector<int> t1;
+    int c1 = 0;
+    std::vector<bool> v1(10, false);
+    std::vector<int> t2;
+    int c2 = 0;
+    std::vector<bool> v2(10, false);
+    std::vector<int> t3;
+    int c3 = 0;
+    std::vector<bool> v3(10, false);
+
+    g5a.BasicDFS(-1, v1, c1, t1);
+    g5a.BasicDFS(100, v2, c2, t2);
+    g5a.BasicDFS(4, v3, c3, t3);
+
+    REQUIRE(c1 == 0);
+    REQUIRE(c2 == 0);
+    REQUIRE(c3 == 0);
+
+    REQUIRE(t1.size() == 0);
+    REQUIRE(t2.size() == 0);
+    REQUIRE(t3.size() == 0);
+}
+
 TEST_CASE("Test Dijsktra Basic", "[weight=1][part=3]") {
     Graph g5("./data/dijk_basic.csv");
 
