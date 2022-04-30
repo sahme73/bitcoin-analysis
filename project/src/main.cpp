@@ -87,31 +87,52 @@ void PageRankAllCall(Graph& g1) {
 
     std::cout << "The following is the PageRank of every user:" << std::endl;
 
-    float min = 100.0f;
-    size_t min_idx = 0;
-    float max = 0.0f;
-    size_t max_idx = 0;
+    //float min = 100.0f;
+    //size_t min_idx = 0;
+    //float max = 0.0f;
+    //size_t max_idx = 0;
+
+    std::vector<int> highest;
+    std::vector<int> lowest;
 
     for (size_t i = 0; i < output.size(); i++) {
         if (output.at(i) != -1) {
 
-            if (output.at(i) < min) {
-                min = output.at(i);
-                min_idx = i;
-            }
+            // if (output.at(i) < min && output.at(i) != 0.0f) {
+            //     min = output.at(i);
+            //     min_idx = i;
+            // }
 
-            if (output.at(i) > max) {
-                max = output.at(i);
-                max_idx = i;
-            }
+            // if (output.at(i) > max) {
+            //     max = output.at(i);
+            //     max_idx = i;
+            // }
+
+            if(output.at(i) == 21) 
+                highest.push_back(i);
+
+            if(output.at(i) == 1)
+                lowest.push_back(i);
 
             std::cout << "(" << i << ": " << output.at(i) << ") ";
         }
     }
     TerminalHelper1(2);
 
-    std::cout << max_idx << " has the highest PageRanking of " << max << std::endl;
-    std::cout << min_idx << " has the lowest PageRanking of "<< min << std::endl;
+    std::cout << "Users with the highest rating: ";
+    for(size_t i = 0; i < highest.size(); i++) {
+        std::cout << highest[i] << " ";
+    }
+    std::cout << std::endl;
+
+    std::cout << "Users with the lowest rating: ";
+    for(size_t i = 0; i < lowest.size(); i++) {
+        std::cout << lowest[i] << " ";
+    }
+    std::cout << std::endl;
+
+    // std::cout << max_idx << " has the highest PageRanking of " << max << std::endl;
+    // std::cout << min_idx << " has the lowest PageRanking of "<< min << std::endl;
 }
 
 int main() {
