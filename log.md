@@ -33,3 +33,10 @@ ___
 - Tasks Completed: This week, the group finished coding around Thursday. the group was able to meet on Sunday to write test cases for each method.
 - Problems: We did not encounter any significant problems this week. All of the issues that came up wile testing the algorithms were solved in a group meeting.
 - Plans: We plan to finish testing on the full dataset this week and working on the presentation materials in order to be finished before finals week. This will also allow us time to correct any problems that appear.
+___
+**Week 5**
+---
+- Goals: Our goal this week was to finish the main function, the results file and the presentation. We did not reach this goal and only acheived the planning of the presentation and the results file. We also finished the main function.
+- Tasks Completed: We wrote the results.md file and planned out what we would say for the presentation this week. We also finished the main function.
+- Problems: We encountered no problems this week.
+- Plans: We plan to finish the project completely this week. All that is left to do is proofread the results file and record our presentation.
