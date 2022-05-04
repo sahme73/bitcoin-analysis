@@ -40,3 +40,10 @@ ___
 - Tasks Completed: We wrote the results.md file and planned out what we would say for the presentation this week. We also finished the main function.
 - Problems: We encountered no problems this week.
 - Plans: We plan to finish the project completely this week. All that is left to do is proofread the results file and record our presentation.
+___
+**Week 6**
+---
+- Goals: Our goal this week was to finish the project. We achieved this goal.
+- Tasks Completed: We finished all final materials including the written report, the final presentation, and the README. 
+- Problems: We encountered no problems this week.
+- Plans: The project is finished. No future plans.
