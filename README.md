@@ -16,6 +16,8 @@
 <!-- GETTING STARTED -->
 ## Getting Started
 
+Final Project Overview/Presentation: https://youtu.be/qs5qq15pCMU
+
 To setup the project locally, follow the installation instructions below.
 
 ### Installation
