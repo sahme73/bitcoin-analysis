@@ -10,6 +10,7 @@
       </ul>
     </li>
     <li><a href="#usage">Usage</a></li>
+    <li><a href="#contributors">Contributors</a></li>
   </ol>
 </details>
 
@@ -69,5 +70,16 @@ _Cleaning the /bin/ directory:_
    ```sh
    make clean
    ```
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+## Contributors
+1. Safeer Ahmed
+
+2. Thomas Alakkatt
+
+3. Matthew Casper
+
+4. James Lu
 
 <p align="right">(<a href="#top">back to top</a>)</p>
